@@ -37,31 +37,34 @@ export class ToDoListComponent {
         completed: false,
       };
       this.todoList.push(newToDoItem);
-      localStorage.setItem('object', JSON.stringify(this.todoList));
-      console.log(this.todoList);
+      // console.log(this.todoList);
+      this.saveToDoList();
       this.newTask = '';
     }
+  }
+
+  saveToDoList(){
+    localStorage.setItem('object', JSON.stringify(this.todoList));
   }
 
   toggleCompleted(index: number): void {
     console.log(index);
     this.todoList[index].completed = !this.todoList[index].completed;
-    localStorage.setItem('object', JSON.stringify(this.todoList));
+    this.saveToDoList();
   }
 
   deleteTask(id: number): void {
       this.todoList = this.todoList.filter(item => item.id !== id);
       // this.saveTodoList();
-      localStorage.setItem('object', JSON.stringify(this.todoList));
+      this.saveToDoList();
   }
 
   getToDoList(){
-
     const data = localStorage.getItem('object');
     console.log(data);
     if(data){
     this.todoList = JSON.parse(data);
     }
-    
+     
   }
 }
