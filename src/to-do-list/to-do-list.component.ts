@@ -63,7 +63,7 @@ export class ToDoListComponent {
     const data = localStorage.getItem('object');
     console.log(data);
     if(data){
-    this.todoList = JSON.parse(data);
+    this.todoList = JSON.parse(data); 
     }
      
   }
